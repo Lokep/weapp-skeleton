@@ -44,6 +44,10 @@ export interface IRequestConfig {
    * 当页面存在 loading 效果，是否需要 response 延迟展示
    */
   delay?: number;
+
+  isMock?: boolean;
+
+  mockUrl?: string;
 }
 
 export interface IResponse {
@@ -67,4 +71,4 @@ export type BasePromiseContext = (
   next?: Next
 ) => Promise<boolean>;
 
-export type AfterHook = (config?: IRequestConfig) => void
+export type AfterHook = (response: IResponse, config?: IRequestConfig) => IResponse
