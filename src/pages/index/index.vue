@@ -7,9 +7,9 @@
 
     <img :src="course.contentUrl" alt="" />
 
-    <button @click="getPackageInfo">run task</button>
+    <button class="w-32 md:w-32 lg:w-48 bg-red-800 text-white my-2.5 p-2.5" @click="getPackageInfo">run task</button>
 
-    <button @click="showPiniaTable">showPinia</button>
+    <button class="bg-blue-400 w-32 md:w-32 lg:w-48 bg-red-800 text-white my-2.5 p-2.5" @click="showPiniaTable">showPinia</button>
   </view>
 </template>
 
@@ -20,7 +20,7 @@ import { compose } from "@/utils/compose";
 import { onShow } from "@dcloudio/uni-app";
 import { ComponentInternalInstance, getCurrentInstance, Ref, ref } from "vue";
 import { useAppStore } from "@/store/app";
-import { go } from "@/utils/uni-app";
+// import { go } from "@/utils/uni-app";
 
 const store = useStore();
 const appStore = useAppStore();
@@ -48,7 +48,7 @@ const getPackageInfo = () => {
     });
 };
 
-go('/pages/hooks/index')
+// go('/pages/hooks/index')
 
 onShow(() => {
   console.log("onShow");
