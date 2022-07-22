@@ -48,6 +48,10 @@ export function getPlatform() {
   return platform;
 }
 
+export function getLaunchOption() {
+  return uni.getLaunchOptionsSync();
+}
+
 // 获取当前帐号信息
 export const accountInfo: {
   envVersion: string;
@@ -137,7 +141,10 @@ export const showToast = (
   });
 };
 
-export const showLoading = (title: string = '加载中', mask: boolean = false) => {
+export const showLoading = (
+  title: string = "加载中",
+  mask: boolean = false
+) => {
   uni.showLoading({
     title,
     mask,

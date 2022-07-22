@@ -67,6 +67,13 @@ function handleHeader(needToken = true) {
   return headers;
 }
 
+// uni.addInterceptor('request', {
+//   invoke(args) {
+//     console.log('[invoke]: ', args)
+//     return false
+//   }
+// })
+
 /**
  * 通用网络请求封装
  *
