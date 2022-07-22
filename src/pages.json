@@ -5,6 +5,12 @@
       "style": {
         "navigationBarTitleText": "justfe-mobile"
       }
+    },
+    {
+      "path": "pages/hooks/index",
+      "style": {
+        "navigationBarTitleText": "hooks"
+      }
     }
   ],
   "globalStyle": {
