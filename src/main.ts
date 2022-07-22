@@ -1,10 +1,10 @@
+import "./index.css";
 import { createSSRApp } from "vue";
 import justui from "justui";
-
 import { createPinia } from "pinia";
-import App from "./App.vue";
 
-import PiniaHelper, { showPiniaState }  from "@/utils/pinia-helper";
+import App from "./App.vue";
+import PiniaHelper, { showPiniaState } from "@/utils/pinia-helper";
 
 /**
  * 定义vue全局方法需要在此接口声明类型
