@@ -17,6 +17,8 @@ import { request } from "@/utils/request";
 import { LOGIN_PATH, USER_INFO } from "@/constants/app";
 import { logger } from "./logger";
 
+// compose后续用拦截器代替 https://uniapp.dcloud.io/api/interceptor.html
+
 class Compose {
   constructor() {}
 
