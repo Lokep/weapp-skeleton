@@ -252,6 +252,8 @@ export const openDocument = (
   });
 };
 
+/*  #ifdef  MP-WEIXIN  */
+
 const fileSystemManager = uni.getFileSystemManager();
 
 export const moveFile = (oldPath: string, newPath: string) =>
@@ -269,6 +271,8 @@ export const moveFile = (oldPath: string, newPath: string) =>
   });
 
 export const renameFile = moveFile;
+
+/*  #endif  */
 
 /**
  * 打开h5，并且跳转到指定的页面，展示指定的标题

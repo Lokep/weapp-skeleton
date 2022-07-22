@@ -15,6 +15,7 @@ import { isPromise, isFunction, isAsyncFunction } from "./index";
 import { IRequestConfig } from "@/types/request";
 import { request } from "@/utils/request";
 import { LOGIN_PATH, USER_INFO } from "@/constants/app";
+import { logger } from "./logger";
 
 class Compose {
   constructor() {}
@@ -34,18 +35,15 @@ class Compose {
   private afterHooks: AfterHook[] = [];
 
   use(context: BasePromiseContext | BaseContext): Compose {
-    if (isPromise(context)) {
+    if (isPromise(context) || isFunction(context) || isAsyncFunction(context)) {
       this.middleware.push(context as BasePromiseContext);
-    } else if (isFunction(context)) {
-      this.middleware.push(context);
-    } else if (isAsyncFunction(context)) {
     } else {
       throw new TypeError("context must be an Function!");
     }
     return this;
   }
 
-  after(context: (config?: IRequestConfig) => void): Compose {
+  after(context: AfterHook): Compose {
     if (isPromise(context) || isFunction(context) || isAsyncFunction(context)) {
       this.afterHooks.push(context);
     } else {
@@ -80,11 +78,33 @@ class Compose {
       return false;
     }
 
-    const res = await request(this.config);
+    try {
+      const report = this.logger();
+      const response = await request(this.config);
 
-    this.afterHooks.forEach((item: AfterHook) => item(this.config));
+      report(response);
 
-    return res;
+      const res = this.afterHooks.reduce((res, item: AfterHook) => {
+        return res = item(response.data as IResponse,this.config)
+      }, {});
+
+      return res as IResponse
+    } catch (error) {
+      return false
+    }
+  }
+
+  logger() {
+    const startTime = Date.now();
+
+    return (response: UniApp.RequestSuccessCallbackResult) => {
+      const endTime = Date.now();
+
+      logger(this.config, {
+        ...response,
+        delta: endTime - startTime,
+      });
+    };
   }
 }
 
@@ -141,10 +161,11 @@ compose.use(async (config?: IRequestConfig) => {
   return hasNextwork;
 });
 
-compose.after((config?: IRequestConfig) => {
+compose.after((res, config?: IRequestConfig) => {
   if (config?.showLoading) {
     uni.hideLoading();
   }
+  return res
 });
 
 export const runTask = compose.runTask.bind(compose);
