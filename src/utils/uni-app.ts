@@ -1,5 +1,5 @@
 import { ENUM_PLATFORM, ToastIcon, ISystemInfo } from "@/types/uni.d";
-import { isArray } from "./index";
+import { isArray } from "./is";
 
 // 缓存
 export const saveCache = <T>(k: string, v: T) => uni.setStorageSync(k, v);

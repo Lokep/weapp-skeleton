@@ -1,5 +1,5 @@
 import { IRequestConfig, IResponse } from "./../types/request.d";
-import { isURL } from "./index";
+import { isURL } from "./is";
 import { logger } from "./logger";
 import {
   getCurrentInstance,
@@ -66,13 +66,6 @@ function handleHeader(needToken = true) {
 
   return headers;
 }
-
-// uni.addInterceptor('request', {
-//   invoke(args) {
-//     console.log('[invoke]: ', args)
-//     return false
-//   }
-// })
 
 /**
  * 通用网络请求封装
