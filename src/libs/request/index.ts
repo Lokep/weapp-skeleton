@@ -1,5 +1,13 @@
 import type { IRequestConfig, Middleware } from "@/types/request.d";
-import { ToastMiddleware,DelayLoadingMiddleware, ErrorHandlerMiddleware, AuthMiddleware, LogMiddleware, AuthCheckMiddleware, ResponseMiddleware } from "./middleware";
+import {
+  ToastMiddleware,
+  DelayLoadingMiddleware,
+  ErrorHandlerMiddleware,
+  AuthMiddleware,
+  LogMiddleware,
+  AuthCheckMiddleware,
+  ResponseMiddleware,
+} from "./middleware";
 
 const DefaultMiddlewares = [
   ToastMiddleware,
@@ -9,74 +17,67 @@ const DefaultMiddlewares = [
   LogMiddleware,
   AuthCheckMiddleware(),
   ResponseMiddleware,
-]
+];
 
-export default function customRequest(config: Partial<IRequestConfig>, middlewares: Middleware[] = DefaultMiddlewares) {
+export default function customRequest(
+  config: Partial<IRequestConfig>,
+  middlewares: Middleware[] = DefaultMiddlewares
+) {
   let i = 0;
-  const middleware: Middleware[] = []
+  const middleware: Middleware[] = [];
 
   const requestConfig: Partial<IRequestConfig> = {
-    method: 'GET',
+    method: "GET",
     ...config,
-  }
+  };
 
   function addTask() {
-    middleware.push(...arguments)
+    middleware.push(...arguments);
   }
 
   async function runTask(): Promise<any> {
-    const task = middleware.shift()
+    const task = middleware.shift();
 
     if (task) {
-
-      const oldIndex = i
-      const res = await task(requestConfig, next) // run the next middleware
+      const oldIndex = i;
+      const res = await task(requestConfig, next); // run the next middleware
 
       if (oldIndex === i) {
-        next()
+        next();
       }
 
-      return res
+      return res;
     }
 
-    i = 0
-    return
+    i = 0;
+    return;
   }
 
   async function next(): Promise<any> {
-    i++
+    i++;
 
-    const res = await runTask()
+    const res = await runTask();
 
-    return res
+    return res;
   }
-
-
-
 
   if (Array.isArray(middlewares) && middlewares.length) {
     // @ts-ignore
-    addTask(...middlewares)
+    addTask(...middlewares);
   }
 
   // @ts-ignore
-  addTask(() => requestify(requestConfig))
+  addTask(() => requestify(requestConfig));
 
-  return runTask()
+  return runTask();
 }
 
-
-
-
 export const requestify = (options: UniApp.RequestOptions) =>
-  new Promise((resolve, reject) => resolve(options)
+  new Promise(
+    (resolve, reject) => resolve(options)
     // uni.request({
     //   ...options,
     //   success: resolve,
     //   fail: reject,
     // })
   );
-
-
-
-
