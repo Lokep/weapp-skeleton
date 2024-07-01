@@ -1,9 +1,18 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "uni-app",
+        "enablePullDownRefresh": true
+			}
+		},
+    {
+			"path": "pages/test/index",
+			"style": {
+				"navigationBarTitleText": "uni-app",
+        "enablePullDownRefresh": true,
+        "navigationStyle": "custom"
 			}
 		}
 	],
@@ -12,5 +21,12 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
-	}
+	},
+
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^Container": "@/components/Container/index.vue"
+    }
+  }
 }

@@ -17,8 +17,7 @@ onHide(() => {
 @import "@/static/styles/iconfont.scss";
 
 .container {
-  @apply w-full;
-  @apply min-h-screen;
+  @apply w-screen min-h-screen overflow-hidden;
   background-color: #f5f6f7;
   max-width: 100vw;
 }

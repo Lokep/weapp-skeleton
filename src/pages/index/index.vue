@@ -1,17 +1,27 @@
 <template>
-  <view class="content bg-slate-50 h-screen">
+  <div class="overflow-hidden">
     <image class="logo w-20 h-20 block" src="/static/logo.png" />
     <image class="logo w-20 h-20 block" :src="Logo" />
     <view class="text-area">
       <text class="title text-lg">{{ title }}</text>
     </view>
-  </view>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import Logo from "@/static/logo.png";
+import { onPullDownRefresh, onReady } from "@dcloudio/uni-app";
 import { ref } from "vue";
+
 const title = ref("Hello");
+
+onReady(() => {
+  console.log("onLoad");
+});
+
+onPullDownRefresh(() => {
+  console.log("onPullDownRefresh");
+})
 </script>
 
 <style lang="scss">
