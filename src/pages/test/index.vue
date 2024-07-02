@@ -6,6 +6,8 @@
     :customNavigationBar="{
       title: '测试页面',
     }"
+    empty
+    autoCheckNetwork
   >
     safsdaflk
   </Container>

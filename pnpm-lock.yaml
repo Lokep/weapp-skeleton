@@ -38,6 +38,7 @@ specifiers:
   sass-loader: '10'
   tailwindcss: ^3.4.1
   tailwindcss-rem2px-preset: ^1.0.3
+  three-dots: ^0.3.2
   typescript: ^4.9.4
   vite: 4.3.5
   vue: ^3.3.11
@@ -66,6 +67,7 @@ dependencies:
   lodash-es: 4.17.21
   pinia: 2.1.7_skhczk46n4mw7mzkfjsxhc723y
   qs: 6.12.1
+  three-dots: 0.3.2
   vue: 3.4.30_typescript@4.9.5
   vue-i18n: 9.13.1_vue@3.4.30
 
@@ -5083,6 +5085,11 @@ packages:
     dependencies:
       any-promise: 1.3.0
     dev: true
+
+  /three-dots/0.3.2:
+    resolution: {integrity: sha512-N7JMhoCX+4mhgGWy4Hqy4PZ27shKwLRvaADn3YsK9+bImK5U/xA/woCUavehoHGrkNG3yyAzwQ6UnuFH0/yLVQ==}
+    engines: {node: '>=14'}
+    dev: false
 
   /timm/1.7.1:
     resolution: {integrity: sha512-IjZc9KIotudix8bMaBW6QvMuq64BrJWFs1+4V0lXwWGQZwH+LnX87doAYhem4caOEusRP9/g6jVDQmZ8XOk1nw==}
