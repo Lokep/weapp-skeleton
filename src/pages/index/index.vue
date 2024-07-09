@@ -48,6 +48,5 @@ onPullDownRefresh(() => {
 
 .title {
   font-size: 36rpx;
-  color: $a;
 }
 </style>
