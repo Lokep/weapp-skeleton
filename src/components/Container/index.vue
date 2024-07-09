@@ -35,7 +35,7 @@
 
     <div
       class="w-full flex-1 overflow-auto flex items-center justify-center"
-      v-if="showNetworkError || !networkAvailable"
+      v-if="showNetworkError && !networkAvailable"
     >
       <Empty :empty-text="networkErrorText" />
     </div>
@@ -54,7 +54,11 @@
       <Empty :empty-text="emptyText" />
     </div>
 
-    <div class="w-full flex-1 overflow-auto" v-else>
+    <div
+      class="w-full flex-1 overflow-auto"
+      v-else
+      :style="{ padding: props.padding }"
+    >
       <slot></slot>
     </div>
 
@@ -79,6 +83,11 @@ const props = defineProps({
   height: {
     type: String,
     default: "100%",
+  },
+
+  padding: {
+    type: String,
+    default: "32rpx",
   },
 
   backgroundColor: {

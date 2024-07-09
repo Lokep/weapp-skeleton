@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
 @import "three-dots/scss/_index.scss";
 
+
 .loading {
   @apply w-16 h-16 flex items-center justify-center bg-white;
 
@@ -13,7 +14,7 @@
   }
 
   &-text {
-    @apply  text-gray-500 text-center;
+    @apply text-gray-500 text-center;
   }
 }
 </style>
@@ -29,6 +30,8 @@
     ]"
     :style="{
       background: backgroundColor,
+      width: size,
+      height: size,
     }"
   >
     <div :class="[`dot-${[type]}`]"></div>
@@ -37,6 +40,8 @@
 </template>
 
 <script setup lang="ts">
+import type { PropType } from "vue";
+
 enum LoadingType {
   elastic = "elastic",
   pulse = "pulse",
@@ -63,7 +68,7 @@ enum LoadingType {
 
 defineProps({
   type: {
-    type: String,
+    type: String as PropType<LoadingType>,
     default: LoadingType.windmill,
   },
 
@@ -86,5 +91,14 @@ defineProps({
     type: String,
     default: "",
   },
+
+  size: {
+    type: String,
+    default: "128rpx",
+  },
+});
+
+defineExpose({
+  LoadingType,
 });
 </script>
