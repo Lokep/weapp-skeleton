@@ -93,3 +93,11 @@ $dot-height: 6px;
   --background-2: #1c1c1e;
   --background-3: #37363b;
 }
+
+
+@mixin vue-flex($direction: row) {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	flex-direction: $direction;
+	/* #endif */
+}

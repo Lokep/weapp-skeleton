@@ -168,7 +168,7 @@
   }
 
   &-round {
-    @apply rounded-md;
+    @apply rounded-lg;
   }
 
   &-circle {
@@ -329,35 +329,35 @@ const emit = defineEmits([
   "agreeprivacyauthorization",
 ]);
 
-const onClick = (e) => {
+const onClick = (e: Event) => {
   emit("click", e);
 };
 
-const onGetPhoneNumber = (e) => {
+const onGetPhoneNumber = (e: any) => {
   emit("getphonenumber", e);
 };
 
-const onGetRealTimePhoneNumber = (e) => {
+const onGetRealTimePhoneNumber = (e: any) => {
   emit("getrealtimephonenumber", e);
 };
 
-const onError = (e) => {
+const onError = (e: any) => {
   emit("error", e);
 };
 
-const onOpenSetting = (e) => {
+const onOpenSetting = (e: any) => {
   emit("opensetting", e);
 };
 
-const onLaunchApp = (e) => {
+const onLaunchApp = (e: any) => {
   emit("launchapp", e);
 };
 
-const onChooseAvatar = (e) => {
+const onChooseAvatar = (e: any) => {
   emit("chooseavatar", e);
 };
 
-const onAgreePrivacyAuthorization = (e) => {
+const onAgreePrivacyAuthorization = (e: any) => {
   emit("agreeprivacyauthorization", e);
 };
 </script>

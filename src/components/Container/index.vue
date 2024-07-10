@@ -37,7 +37,7 @@
       class="w-full flex-1 overflow-auto flex items-center justify-center"
       v-if="showNetworkError && !networkAvailable"
     >
-      <Empty :empty-text="networkErrorText" />
+      <Empty :description="networkErrorText" />
     </div>
 
     <div
@@ -51,7 +51,7 @@
       class="w-full flex-1 overflow-auto flex items-center justify-center"
       v-else-if="empty"
     >
-      <Empty :empty-text="emptyText" />
+      <Empty :description="emptyText" />
     </div>
 
     <div
