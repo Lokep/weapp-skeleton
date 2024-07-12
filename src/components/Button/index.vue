@@ -226,7 +226,10 @@
         <slot></slot>
       </div>
 
-      <div class="button-loading--icon iconloading iconfont text-base shrink-0 grow-0" v-if="loading"></div>
+      <div
+        class="button-loading--icon iconloading iconfont text-base shrink-0 grow-0"
+        v-if="loading"
+      ></div>
     </div>
   </button>
 </template>
@@ -248,67 +251,42 @@ type ButtonOpenType =
   | "openSetting"
   | "feedback"
   | "chooseAvatar"
-  | "agreePrivacyAuthorization";
+  | "agreePrivacyAuthorization"
+  | null
 
-const props = defineProps({
-  block: {
-    type: Boolean,
-    default: false,
-  },
-
-  danger: {
-    type: Boolean,
-    default: false,
-  },
-
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-
-  ghost: {
-    type: Boolean,
-    default: false,
-  },
-
-  size: {
-    type: String as PropType<ButtonSize>,
-    default: "middle",
-  },
-
-  icon: {
-    type: String,
-    default: "",
-  },
-
-  loading: {
-    type: Boolean as PropType<boolean>,
-    default: false,
-  },
-
-  shape: {
-    type: String as PropType<ButtonShape>,
-    default: "round",
-  },
-
-  type: {
-    type: String as PropType<ButtonType>,
-    default: "default",
-  },
-
+interface ButtonProps {
+  block: boolean;
+  danger: boolean;
+  disabled: boolean;
+  ghost: boolean;
+  size: ButtonSize;
+  icon: string;
+  loading: boolean | string;
+  shape: string;
+  type: ButtonType;
   /**
    * *以下为微信小程序特有属性
    */
-  openType: {
-    type: String as PropType<ButtonOpenType>,
-    default: "",
-  },
+  openType: ButtonOpenType;
+  hoverStopPropagation: boolean;
+}
 
-  hoverStopPropagation: {
-    type: Boolean,
-    default: true,
-  },
-});
+const props = withDefaults(
+  defineProps<ButtonProps>(),
+  {
+    block: false,
+    danger: false,
+    disabled: false,
+    ghost: false,
+    size: "middle",
+    icon: "",
+    loading: false,
+    shape: "round",
+    type: "default",
+    openType: null,
+    hoverStopPropagation: true,
+  }
+);
 
 const loadingType = computed(() => {
   if (typeof props.loading === "string") {
