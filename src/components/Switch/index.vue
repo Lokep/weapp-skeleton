@@ -54,7 +54,7 @@
 </style>
 
 <template>
-  <button
+  <div
     class="switch"
     :class="{
       checked: isSwitchActive,
@@ -65,7 +65,7 @@
     <div class="switch-text on">{{ onText }}</div>
     <div class="switch-text off">{{ offText }}</div>
     <div class="switch-background"></div>
-  </button>
+  </div>
 </template>
 
 <script setup lang="ts">

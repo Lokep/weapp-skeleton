@@ -54,6 +54,7 @@
       class="nav-wrap"
       :style="{
         height: `${totalHeight}px`,
+        background: background,
       }"
     >
       <div class="statusBarHeight" :style="customStatusBarStyle"></div>
@@ -104,8 +105,8 @@ const props = defineProps({
   },
 
   background: {
-    type: String as PropType<CSSStyleValue>,
-    default: "",
+    type: String,
+    default: "white",
   },
 
   statusBarStyle: {

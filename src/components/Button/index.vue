@@ -12,7 +12,8 @@
   --op: 1;
   --active-op: 1;
 
-  @apply inline-block cursor-pointer relative overflow-visible;
+  @apply inline-block cursor-pointer relative overflow-visible rounded-none;
+  box-sizing: border-box;
 
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
   border: 1px solid;
@@ -21,6 +22,17 @@
   color: var(--text-color);
   background-color: var(--bg-color);
   opacity: var(--op);
+
+  padding: 0;
+  margin: 0;
+
+  &::after {
+    content: "";
+    border: none !important;
+    border-radius: 0 !important;
+    display: none !important;
+  }
+
 
   .wave {
     @apply absolute block pointer-events-none bg-no-repeat opacity-0 z-10;
@@ -33,11 +45,6 @@
     background-position: 50%;
     transition: all 0.6s;
     border-radius: inherit;
-  }
-
-  &::after {
-    content: "";
-    border: none;
   }
 
   &:not(&-disabled):not(&-loading):active {
@@ -168,7 +175,7 @@
   }
 
   &-round {
-    @apply rounded-lg;
+    border-radius: 12rpx !important;
   }
 
   &-circle {
@@ -176,21 +183,33 @@
   }
 
   &-small {
-    @apply px-2 py-1 text-sm;
+    @apply text-sm;
+    padding-left: 16rpx!important;
+    padding-right: 16rpx!important;
+    padding-top: 8rpx!important;
+    padding-bottom: 8rpx!important;
   }
 
   &-middle {
-    @apply py-2 px-6 text-base;
+    @apply text-base;
+    padding-top: 16rpx!important;
+    padding-bottom: 16rpx!important;
+    padding-left: 48rpx!important;
+    padding-right: 48rpx!important;
   }
 
   &-large {
-    @apply py-3 px-6 text-lg;
+    @apply text-lg;
+    padding-top: 24rpx!important;
+    padding-bottom: 24rpx!important;
+    padding-left: 48rpx!important;
+    padding-right: 48rpx!important;
   }
 }
 </style>
 
 <template>
-  <button
+  <div
     class="button"
     :class="[
       {
@@ -231,7 +250,7 @@
         v-if="loading"
       ></div>
     </div>
-  </button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -252,7 +271,7 @@ type ButtonOpenType =
   | "feedback"
   | "chooseAvatar"
   | "agreePrivacyAuthorization"
-  | null
+  | null;
 
 interface ButtonProps {
   block: boolean;
@@ -262,7 +281,7 @@ interface ButtonProps {
   size: ButtonSize;
   icon: string;
   loading: boolean | string;
-  shape: string;
+  shape: ButtonShape;
   type: ButtonType;
   /**
    * *以下为微信小程序特有属性
@@ -271,22 +290,19 @@ interface ButtonProps {
   hoverStopPropagation: boolean;
 }
 
-const props = withDefaults(
-  defineProps<ButtonProps>(),
-  {
-    block: false,
-    danger: false,
-    disabled: false,
-    ghost: false,
-    size: "middle",
-    icon: "",
-    loading: false,
-    shape: "round",
-    type: "default",
-    openType: null,
-    hoverStopPropagation: true,
-  }
-);
+const props = withDefaults(defineProps<ButtonProps>(), {
+  block: false,
+  danger: false,
+  disabled: false,
+  ghost: false,
+  size: "middle",
+  icon: "",
+  loading: false,
+  shape: "round",
+  type: "default",
+  openType: null,
+  hoverStopPropagation: true,
+});
 
 const loadingType = computed(() => {
   if (typeof props.loading === "string") {
